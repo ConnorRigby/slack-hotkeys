@@ -6,7 +6,9 @@ SRC=$(wildcard src/*.cpp)
 OBJ=$(SRC:.cpp=.o)
 OUT=bin
 
+INSTALL_PREFIX ?= $(HOME)
 EXES=bin/users.profile.set bin/chat.meMessage bin/chat.postMessage
+INSTALL_EXES=$(foreach EXE,$(EXES),$(INSTALL_PREFIX)/$(EXE))
 
 .PHONY: all clean
 
@@ -30,3 +32,9 @@ bin/chat.postMessage: src/chat.postMessage.o
 clean:
 	$(RM) $(OBJ)
 	$(RM) $(EXES)
+
+install:
+	$(foreach EXE,$(EXES), cp $(EXE) $(INSTALL_PREFIX)/$(EXE);)
+
+uninstall:
+	$(RM) $(INSTALL_EXES)
