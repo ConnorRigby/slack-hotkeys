@@ -1,0 +1,3 @@
+[submodule "deps/slacking"]
+	path = deps/slacking
+	url = git@github.com:coin-au-carre/slacking.git
