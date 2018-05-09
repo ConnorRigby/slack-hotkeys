@@ -10,6 +10,9 @@ INSTALL_PREFIX ?= $(HOME)
 EXES=bin/users.profile.set bin/chat.meMessage bin/chat.postMessage
 INSTALL_EXES=$(foreach EXE,$(EXES),$(INSTALL_PREFIX)/$(EXE))
 
+ifneq ($(SLACK_TKN),)
+	CFLAGS += -DSLACK_TKN='"$(SLACK_TKN)"'
+endif
 .PHONY: all clean
 
 all: $(OUT) $(EXES)
